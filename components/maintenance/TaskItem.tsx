@@ -13,6 +13,15 @@ const categoryColors: Record<string, string> = {
   inspection: 'text-content-muted',
 }
 
+const categoryLabels: Record<string, string> = {
+  engine: 'Motor',
+  drivetrain: 'Transmisión',
+  brakes: 'Frenos',
+  tires: 'Llantas',
+  electrical: 'Eléctrico',
+  inspection: 'Inspección',
+}
+
 interface TaskItemProps {
   task: MaintenanceTask
   completed: boolean
@@ -90,7 +99,7 @@ export function TaskItem({ task, completed, onToggle, disabled = false, index }:
                 categoryColors[task.category] ?? 'text-content-muted'
               )}
             >
-              {task.category}
+              {categoryLabels[task.category] ?? task.category}
             </span>
           </div>
 

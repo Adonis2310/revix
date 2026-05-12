@@ -112,11 +112,11 @@ export function DashboardClient({
           <div className="flex items-center justify-between px-6 mb-4">
             <div>
               <p className="text-label-sm text-content-muted uppercase tracking-[0.14em]">
-                Maintenance Schedule
+                Plan de Mantenimiento
               </p>
               {activeCard && (
                 <p className="text-label-md text-content-secondary mt-0.5">
-                  {activeCard.tasks.length} tasks at {activeCard.milestoneKm.toLocaleString()} km
+                  {activeCard.tasks.length} tareas a los {activeCard.milestoneKm.toLocaleString()} km
                 </p>
               )}
             </div>
@@ -149,9 +149,9 @@ function ServiceTypeBadge({ type }: { type?: string }) {
 
   const labels: Record<string, string> = {
     regular: 'Regular',
-    intermediate: 'Intermediate',
-    major: 'Major',
-    comprehensive: 'Full',
+    intermediate: 'Intermedio',
+    major: 'Mayor',
+    comprehensive: 'Completo',
   }
 
   return (

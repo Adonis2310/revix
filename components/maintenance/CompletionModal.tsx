@@ -90,7 +90,7 @@ export function CompletionModal({ onSuccess }: CompletionModalProps) {
               transition={{ delay: 0.15 }}
               className="text-heading-lg text-accent-green font-semibold"
             >
-              Service Recorded
+              Servicio Registrado
             </motion.p>
             <motion.p
               initial={{ opacity: 0 }}
@@ -98,38 +98,38 @@ export function CompletionModal({ onSuccess }: CompletionModalProps) {
               transition={{ delay: 0.25 }}
               className="text-label-md text-content-muted mt-1.5 uppercase tracking-widest"
             >
-              {formatKm(activeCard.milestoneKm)} km — {profile.current_km.toLocaleString()} km odometer
+              {formatKm(activeCard.milestoneKm)} km — odómetro {profile.current_km.toLocaleString()} km
             </motion.p>
           </motion.div>
         )}
 
         {/* Header */}
         <p className="text-label-sm text-content-muted uppercase tracking-[0.14em] mb-1">
-          Confirm Service
+          Confirmar Servicio
         </p>
         <h3 className="text-heading-xl text-content-primary mb-1">
-          {formatKm(activeCard.milestoneKm)} km Service
+          Servicio {formatKm(activeCard.milestoneKm)} km
         </h3>
         <p className="text-label-md text-content-muted mb-5">
-          {SERVICE_LABELS[activeCard.serviceType]} · {tasksDoneCount} tasks completed
+          {SERVICE_LABELS[activeCard.serviceType]} · {tasksDoneCount} tareas completadas
         </p>
 
         {/* Service summary */}
         <div className="bg-bg-surface border border-line rounded-2xl p-4 mb-4">
           <div className="flex items-center justify-between mb-3 pb-3 border-b border-line">
-            <span className="text-label-md text-content-muted uppercase tracking-widest">Odometer</span>
+            <span className="text-label-md text-content-muted uppercase tracking-widest">Odómetro</span>
             <span className="text-body-md font-semibold text-content-primary tabular-nums">
               {formatKm(profile.current_km)} km
             </span>
           </div>
           <div className="flex items-center justify-between mb-3 pb-3 border-b border-line">
-            <span className="text-label-md text-content-muted uppercase tracking-widest">Milestone</span>
+            <span className="text-label-md text-content-muted uppercase tracking-widest">Hito</span>
             <span className="text-body-md font-semibold text-content-primary tabular-nums">
               {formatKm(activeCard.milestoneKm)} km
             </span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-label-md text-content-muted uppercase tracking-widest">Next Due</span>
+            <span className="text-label-md text-content-muted uppercase tracking-widest">Próximo</span>
             <span className="text-body-md font-semibold text-accent-blue tabular-nums">
               {formatKm(activeCard.milestoneKm + 2000)} km
             </span>
@@ -167,7 +167,7 @@ export function CompletionModal({ onSuccess }: CompletionModalProps) {
 
         {/* Notes */}
         <textarea
-          placeholder="Add notes (optional)..."
+          placeholder="Agregar notas (opcional)..."
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           rows={2}
@@ -177,10 +177,10 @@ export function CompletionModal({ onSuccess }: CompletionModalProps) {
         {/* Actions */}
         <div className="flex gap-2">
           <Button variant="ghost" size="lg" className="flex-1" onClick={handleClose} disabled={loading}>
-            Cancel
+            Cancelar
           </Button>
           <Button variant="success" size="lg" className="flex-1" loading={loading} onClick={handleConfirm}>
-            Confirm Service
+            Confirmar Servicio
           </Button>
         </div>
       </div>

@@ -22,13 +22,13 @@ export function MileageProgress() {
       {/* Km label row */}
       <div className="flex items-end justify-between mb-2.5 text-label-sm">
         <div>
-          <p className="text-content-muted uppercase tracking-widest mb-0.5">Last Service</p>
+          <p className="text-content-muted uppercase tracking-widest mb-0.5">Último Servicio</p>
           <p className="text-content-secondary font-mono tabular-nums">
             {formatKm(profile.last_service_km)} km
           </p>
         </div>
         <div className="text-right">
-          <p className="text-content-muted uppercase tracking-widest mb-0.5">Next Service</p>
+          <p className="text-content-muted uppercase tracking-widest mb-0.5">Próximo Servicio</p>
           <p
             className={
               isOverdue
@@ -64,7 +64,7 @@ export function MileageProgress() {
       {/* Status */}
       <div className="flex items-center justify-between mt-2">
         <p className="text-[11px] text-content-muted font-mono">
-          {progress.toFixed(1)}% complete
+          {progress.toFixed(1)}% completado
         </p>
         <p
           className={`text-[11px] font-mono ${
@@ -76,8 +76,8 @@ export function MileageProgress() {
           }`}
         >
           {isOverdue
-            ? `${formatKm(profile.current_km - nextServiceKm)} km overdue`
-            : `${formatKm(kmRemaining)} km remaining`}
+            ? `${formatKm(profile.current_km - nextServiceKm)} km de atraso`
+            : `${formatKm(kmRemaining)} km restantes`}
         </p>
       </div>
     </div>

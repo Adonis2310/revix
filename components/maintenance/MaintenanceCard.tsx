@@ -130,7 +130,7 @@ export function MaintenanceCard({
                 allTasksDone && 'shadow-glow-green border-accent-green/40 bg-accent-green/15 text-accent-green'
               )}
             >
-              {allTasksDone ? 'Complete Service' : `${card.tasks.length - completedCount} tasks remaining`}
+              {allTasksDone ? 'Completar Servicio' : `${card.tasks.length - completedCount} tareas pendientes`}
             </Button>
           </motion.div>
         </div>
@@ -232,9 +232,9 @@ function LockedCard({
             <LockIcon />
           </div>
           <div className="text-center">
-            <p className="text-label-md text-content-muted uppercase tracking-widest mb-1">Locked</p>
+            <p className="text-label-md text-content-muted uppercase tracking-widest mb-1">Bloqueado</p>
             <p className="text-label-sm text-content-dim">
-              Unlocks after {formatKm(card.milestoneKm - 2000)} km service
+              Se desbloquea tras el servicio de {formatKm(card.milestoneKm - 2000)} km
             </p>
           </div>
         </div>
@@ -277,9 +277,9 @@ function CompletedCard({
               <path d="M 1 4 L 3.8 7 L 9 1" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
-          <span className="text-label-md text-accent-green uppercase tracking-widest">Completed</span>
+          <span className="text-label-md text-accent-green uppercase tracking-widest">Completado</span>
         </div>
-        <p className="mt-1 text-label-sm text-content-muted">{completedCount} tasks recorded</p>
+        <p className="mt-1 text-label-sm text-content-muted">{completedCount} tareas registradas</p>
       </div>
     </motion.div>
   )

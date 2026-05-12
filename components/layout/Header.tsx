@@ -61,12 +61,13 @@ export function Header() {
                   >
                     <div className="px-3 py-2 border-b border-line mb-1">
                       <p className="text-label-sm uppercase text-content-muted">Honda XR150L 2025</p>
+
                     </div>
                     <button
                       onClick={handleSignOut}
                       className="w-full text-left px-3 py-2 text-body-md text-content-secondary hover:text-content-primary hover:bg-bg-card transition-colors rounded-xl mx-1 w-[calc(100%-8px)]"
                     >
-                      Sign out
+                      Cerrar sesión
                     </button>
                   </motion.div>
                 </>

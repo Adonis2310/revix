@@ -35,7 +35,7 @@ export function KmDisplay() {
 
       <div className="flex items-center gap-1.5">
         <span className="text-label-md text-content-muted uppercase tracking-[0.14em]">
-          Kilometers
+          Kilómetros
         </span>
         <span className="opacity-0 group-hover:opacity-100 transition-opacity">
           <EditIcon />
@@ -58,11 +58,11 @@ export function KmUpdateModal() {
   const handleSubmit = async () => {
     const km = parseInt(value.replace(/[^0-9]/g, ''), 10)
     if (isNaN(km) || km < 0 || km > 999999) {
-      setError('Enter a valid odometer reading')
+      setError('Ingresa una lectura de odómetro válida')
       return
     }
     if (profile && km < profile.last_service_km) {
-      setError(`Cannot be less than last service (${formatKm(profile.last_service_km)} km)`)
+      setError(`No puede ser menor al último servicio (${formatKm(profile.last_service_km)} km)`)
       return
     }
     setError('')
@@ -82,8 +82,8 @@ export function KmUpdateModal() {
   return (
     <Modal open={isOpen} onClose={handleClose}>
       <div className="p-6">
-        <p className="text-label-sm text-content-muted uppercase tracking-widest mb-1">Update Odometer</p>
-        <h3 className="text-heading-xl text-content-primary mb-5">Current Kilometers</h3>
+        <p className="text-label-sm text-content-muted uppercase tracking-widest mb-1">Actualizar Odómetro</p>
+        <h3 className="text-heading-xl text-content-primary mb-5">Kilómetros Actuales</h3>
 
         <div
           className={`relative flex items-center gap-2 px-4 py-3.5 rounded-2xl bg-bg-surface border transition-colors ${
@@ -118,13 +118,13 @@ export function KmUpdateModal() {
 
         {profile && (
           <p className="mt-3 text-label-sm text-content-muted">
-            Current reading: {formatKm(profile.current_km)} km
+            Lectura actual: {formatKm(profile.current_km)} km
           </p>
         )}
 
         <div className="flex gap-2 mt-5">
           <Button variant="ghost" size="lg" className="flex-1" onClick={handleClose}>
-            Cancel
+            Cancelar
           </Button>
           <Button
             variant="primary"
@@ -134,7 +134,7 @@ export function KmUpdateModal() {
             disabled={!value}
             onClick={handleSubmit}
           >
-            Update
+            Actualizar
           </Button>
         </div>
       </div>
