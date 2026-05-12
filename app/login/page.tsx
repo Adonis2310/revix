@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { createClient } from '@/lib/supabase/client'
 import { RevixLogo } from '@/components/logo/RevixLogo'
 import { Button } from '@/components/ui/Button'
+import { createUserAction } from '@/app/actions/auth'
 
 const FAKE_DOMAIN = '@revix.local'
 
@@ -41,9 +42,10 @@ export default function LoginPage() {
 
     // Si las credenciales no existen, crea la cuenta
     if (signInError.message.toLowerCase().includes('invalid login credentials')) {
-      const { error: signUpError } = await supabase.auth.signUp({ email, password: p })
-      if (signUpError) {
-        setError(signUpError.message)
+      // Crea el usuario desde el servidor sin enviar ningún email
+      const { error: createError } = await createUserAction(email, p)
+      if (createError) {
+        setError(createError)
         setLoading(false)
         return
       }
