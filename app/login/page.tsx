@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/client'
 import { RevixLogo } from '@/components/logo/RevixLogo'
 import { Button } from '@/components/ui/Button'
 import { createUserAction } from '@/app/actions/auth'
+import { LoginTransition } from '@/components/auth/LoginTransition'
 
 const FAKE_DOMAIN = '@revix.local'
 
@@ -18,6 +19,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [showTransition, setShowTransition] = useState(false)
   const supabase = createClient()
 
   const handleSubmit = async () => {
@@ -36,7 +38,8 @@ export default function LoginPage() {
     const { error: signInError } = await supabase.auth.signInWithPassword({ email, password: p })
 
     if (!signInError) {
-      window.location.href = '/dashboard'
+      setLoading(false)
+      setShowTransition(true)
       return
     }
 
@@ -58,12 +61,17 @@ export default function LoginPage() {
         return
       }
 
-      window.location.href = '/dashboard'
+      setLoading(false)
+      setShowTransition(true)
       return
     }
 
     setError('Contraseña incorrecta.')
     setLoading(false)
+  }
+
+  if (showTransition) {
+    return <LoginTransition onComplete={() => { window.location.href = '/dashboard' }} />
   }
 
   return (
