@@ -43,7 +43,7 @@ export default function LoginPage() {
     if (signInError.message.toLowerCase().includes('invalid login credentials')) {
       const { error: signUpError } = await supabase.auth.signUp({ email, password: p })
       if (signUpError) {
-        setError('Error al crear la cuenta. Intenta con otra contraseña.')
+        setError(signUpError.message)
         setLoading(false)
         return
       }

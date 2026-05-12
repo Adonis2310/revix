@@ -8,8 +8,7 @@
       "Bash(node -e ' *)",
       "Bash(python *)",
       "Bash(npm run *)",
-      "Bash(cmdkey *)",
-      "Bash(git push *)"
+      "Bash(vercel --prod)"
     ]
   }
 }
