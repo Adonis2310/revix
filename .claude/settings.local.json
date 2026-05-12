@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(node -e \"const {createBrowserClient} = require\\('@supabase/ssr'\\); console.log\\(typeof createBrowserClient\\)\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d.get\\('types'\\) or d.get\\('typings'\\) or d.get\\('exports',{}\\).get\\('.',{}\\).get\\('types',''\\)\\)\")",
+      "Bash(node -e ' *)",
+      "Bash(python *)",
+      "Bash(npm run *)"
+    ]
+  }
+}
