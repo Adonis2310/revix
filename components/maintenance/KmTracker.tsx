@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Modal } from '@/components/ui/Modal'
 import { Button } from '@/components/ui/Button'
@@ -54,6 +54,16 @@ export function KmUpdateModal() {
   const [value, setValue] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  // Focus sin scroll — evita que iOS baje la página al abrir el modal
+  useEffect(() => {
+    if (!isOpen) return
+    const id = setTimeout(() => {
+      inputRef.current?.focus({ preventScroll: true })
+    }, 80)
+    return () => clearTimeout(id)
+  }, [isOpen])
 
   const handleSubmit = async () => {
     const km = parseInt(value.replace(/[^0-9]/g, ''), 10)
@@ -91,8 +101,10 @@ export function KmUpdateModal() {
           }`}
         >
           <input
-            type="number"
+            ref={inputRef}
+            type="text"
             inputMode="numeric"
+            pattern="[0-9]*"
             placeholder={profile ? profile.current_km.toString() : '0'}
             value={value}
             onChange={(e) => {
@@ -100,8 +112,7 @@ export function KmUpdateModal() {
               setError('')
             }}
             onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
-            autoFocus
-            className="flex-1 bg-transparent text-heading-xl font-light text-content-primary tabular-nums outline-none placeholder:text-content-dim"
+            className="flex-1 min-w-0 bg-transparent text-heading-xl font-light text-content-primary tabular-nums outline-none placeholder:text-content-dim"
           />
           <span className="text-label-md text-content-muted uppercase tracking-widest flex-shrink-0">km</span>
         </div>
