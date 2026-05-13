@@ -10,7 +10,9 @@
       "Bash(npm run *)",
       "Bash(vercel --prod)",
       "Bash(npx vercel *)",
-      "Bash(node -e \"console.log\\(require\\('./node_modules/three/package.json'\\).version, require\\('./node_modules/gsap/package.json'\\).version\\)\")"
+      "Bash(node -e \"console.log\\(require\\('./node_modules/three/package.json'\\).version, require\\('./node_modules/gsap/package.json'\\).version\\)\")",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\adoni\\\\OneDrive\\\\Documentos\\\\REVIX\" -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)"
     ]
   }
 }

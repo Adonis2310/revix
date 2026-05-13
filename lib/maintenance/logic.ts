@@ -1,5 +1,5 @@
-import { TASKS, SERVICE_TASK_IDS } from './schedule'
-import type { MaintenanceCard, ServiceType } from '@/types/maintenance'
+import { TASKS, SERVICE_TASK_IDS, TASK_INTERVALS } from './schedule'
+import type { MaintenanceCard, MaintenanceTask, ServiceType } from '@/types/maintenance'
 
 export const MAINTENANCE_INTERVAL_KM = 2000
 
@@ -17,6 +17,12 @@ export function getTasksForServiceType(serviceType: ServiceType) {
   return SERVICE_TASK_IDS[serviceType].map((id) => TASKS[id])
 }
 
+export function getTasksForMileage(km: number): MaintenanceTask[] {
+  return Object.entries(TASK_INTERVALS)
+    .filter(([, interval]) => km % interval === 0)
+    .map(([id]) => TASKS[id])
+}
+
 export function generateMaintenanceCards(
   lastServiceKm: number,
   currentKm: number,
@@ -30,7 +36,7 @@ export function generateMaintenanceCards(
   for (let i = 1; i <= count; i++) {
     const milestoneKm = lastServiceKm + i * MAINTENANCE_INTERVAL_KM
     const serviceType = getServiceType(i)
-    const tasks = getTasksForServiceType(serviceType)
+    const tasks = getTasksForMileage(milestoneKm)
     const isCompleted = completedSet.has(milestoneKm)
 
     // Active = first non-completed card in the sequence

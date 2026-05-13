@@ -190,6 +190,29 @@ export const TASKS: Record<string, MaintenanceTask> = {
     'inspection',
     'inspect'
   ),
+
+  // ── TAREAS ADICIONALES ────────────────────────────────────────────
+  'oil-filter-change': task(
+    'oil-filter-change',
+    'Cambio Filtro de Aceite',
+    'Revisar y reemplazar el filtro/cedazo de aceite del motor.',
+    'engine',
+    'replace'
+  ),
+  'centrifugal-filter-clean': task(
+    'centrifugal-filter-clean',
+    'Limpieza Filtro Centrífugo',
+    'Limpiar el filtro centrífugo de aceite interno del motor.',
+    'engine',
+    'clean'
+  ),
+  'drive-kit-replace': task(
+    'drive-kit-replace',
+    'Cambio Kit de Arrastre',
+    'Cambiar cadena, corona y piñón de transmisión.',
+    'drivetrain',
+    'replace'
+  ),
 }
 
 // Task sets for each service type — tasks accumulate at each level
@@ -273,4 +296,19 @@ export const SERVICE_SHORT_LABELS: Record<ServiceType, string> = {
   intermediate: 'Intermedio',
   major: 'Mayor',
   comprehensive: 'Completo',
+}
+
+// Interval in km at which each task must be performed
+export const TASK_INTERVALS: Record<string, number> = {
+  'engine-oil-change': 2000,
+  'chain-lubricate': 2000,
+  'oil-filter-change': 4000,
+  'chain-tension': 4000,
+  'brake-front': 4000,
+  'brake-rear': 4000,
+  'valve-clearance': 4000,
+  'spark-plug-replace': 8000,
+  'centrifugal-filter-clean': 12000,
+  'air-filter-replace': 16000,
+  'drive-kit-replace': 20000,
 }
