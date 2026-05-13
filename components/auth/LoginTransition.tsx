@@ -261,73 +261,117 @@ function buildMotoTexture(): THREE.CanvasTexture {
     ctx.arc(88, 158, 42, 0, Math.PI * 2)
     ctx.fill()
 
-    // ── Front wheel
+    // ── Front wheel (slightly larger visual — 21" front vs 18" rear on real XR)
     ctx.beginPath()
-    ctx.arc(272, 158, 42, 0, Math.PI * 2)
+    ctx.arc(272, 158, 43, 0, Math.PI * 2)
     ctx.fill()
 
-    // ── Main chassis + fenders (one compound silhouette)
+    // ── Complete outer silhouette — one clockwise connected path, no seams
+    // Traces: rear fender → seat → tank hump → head tube → fork crown
+    //         → front fender (aggressive enduro tip) → lower fork → ground → back
     ctx.beginPath()
-    ctx.moveTo(46, 152)
-    ctx.bezierCurveTo(46, 122, 52, 104, 58, 96)
-    ctx.bezierCurveTo(68, 80, 92, 76, 120, 80)
-    ctx.lineTo(162, 72)
-    ctx.bezierCurveTo(178, 62, 210, 66, 222, 72)
-    ctx.bezierCurveTo(228, 76, 228, 82, 220, 86)
-    ctx.bezierCurveTo(242, 58, 260, 60, 270, 76)
-    ctx.bezierCurveTo(312, 88, 308, 124, 276, 132)
-    ctx.lineTo(266, 152)
-    ctx.lineTo(232, 196)
-    ctx.lineTo(128, 196)
+    // Rear fender: sweeps up and back above rear wheel
+    ctx.moveTo(36, 106)
+    ctx.bezierCurveTo(36, 86, 48, 74, 66, 70)
+    // Rear subframe meets seat
+    ctx.bezierCurveTo(74, 68, 82, 66, 90, 66)
+    // Seat — long and relatively flat (signature XR150L profile)
+    ctx.lineTo(192, 68)
+    // Tank — distinct hump rising above seat line
+    ctx.bezierCurveTo(202, 66, 218, 54, 232, 56)
+    // Steering head (slightly canted forward)
+    ctx.lineTo(244, 52)
+    ctx.lineTo(250, 56)
+    // Head tube body (short, vertical)
+    ctx.lineTo(254, 76)
+    // Fork crown — transition to long-travel suspension
+    ctx.bezierCurveTo(257, 84, 260, 90, 263, 96)
+    // Front fender — aggressive XR enduro shape, sweeps forward past wheel
+    ctx.bezierCurveTo(274, 86, 304, 72, 330, 88)
+    ctx.bezierCurveTo(348, 108, 344, 142, 324, 154)
+    // Lower fork legs converge at front axle
+    ctx.bezierCurveTo(314, 158, 300, 160, 272, 158)
+    // Ground
+    ctx.lineTo(272, 196)
     ctx.lineTo(88, 196)
-    ctx.lineTo(46, 152)
+    // Rear axle / lower fender
+    ctx.lineTo(88, 158)
+    ctx.lineTo(36, 138)
     ctx.closePath()
     ctx.fill()
 
-    // ── Front fender protrusion
+    // ── Rider helmet — motocross style, elongated, positioned correctly over tank
     ctx.beginPath()
-    ctx.moveTo(224, 86)
-    ctx.bezierCurveTo(248, 56, 296, 70, 310, 102)
-    ctx.bezierCurveTo(314, 120, 300, 138, 274, 128)
+    ctx.ellipse(146, 15, 26, 22, -0.06, 0, Math.PI * 2)
+    ctx.fill()
+    // Visor peak — pronounced forward protrusion (XR/motocross characteristic)
+    ctx.beginPath()
+    ctx.moveTo(160, 4)
+    ctx.bezierCurveTo(183, -4, 198, 5, 194, 15)
+    ctx.bezierCurveTo(190, 24, 165, 20, 161, 12)
     ctx.closePath()
     ctx.fill()
 
-    // ── Rider helmet
+    // ── Rider torso — attack position: back upright, slight forward lean
     ctx.beginPath()
-    ctx.ellipse(107, 22, 30, 26, -0.05, 0, Math.PI * 2)
-    ctx.fill()
-
-    // ── Rider torso (leaning back)
-    ctx.beginPath()
-    ctx.moveTo(83, 32)
-    ctx.bezierCurveTo(82, 54, 100, 64, 132, 52)
-    ctx.bezierCurveTo(156, 44, 162, 66, 155, 82)
-    ctx.lineTo(108, 92)
-    ctx.lineTo(100, 56)
+    ctx.moveTo(122, 28)           // upper back / neck base
+    ctx.bezierCurveTo(120, 50, 124, 64, 138, 68) // down the spine
+    ctx.lineTo(174, 68)           // across the lap at seat level
+    ctx.bezierCurveTo(180, 52, 176, 38, 164, 29) // chest front (forward lean)
+    ctx.bezierCurveTo(156, 22, 138, 18, 120, 22) // shoulder / collar
     ctx.closePath()
     ctx.fill()
   }
 
   const drawLines = () => {
-    ctx.lineCap = 'round'; ctx.lineJoin = 'round'
+    ctx.lineCap = 'round'
+    ctx.lineJoin = 'round'
 
-    // Arms
+    // ── Fork tubes — long-travel suspension (two visible parallel tubes)
+    //    This is one of the most distinctive visual elements of an enduro bike
+    ctx.lineWidth = 5
+    ctx.beginPath(); ctx.moveTo(250, 80); ctx.lineTo(272, 156); ctx.stroke()
+    ctx.beginPath(); ctx.moveTo(262, 78); ctx.lineTo(284, 154); ctx.stroke()
+
+    // ── Handlebars — wide enduro crossbar design
+    ctx.lineWidth = 8
+    ctx.beginPath()
+    ctx.moveTo(170, 50)
+    ctx.bezierCurveTo(196, 44, 226, 45, 258, 49)
+    ctx.stroke()
+    // Crossbrace (characteristic feature of motocross bars)
+    ctx.lineWidth = 4
+    ctx.beginPath()
+    ctx.moveTo(188, 47); ctx.lineTo(242, 47); ctx.stroke()
+
+    // ── Arms — reaching forward at natural attack-stance angle
     ctx.lineWidth = 11
-    ctx.beginPath(); ctx.moveTo(103, 57); ctx.bezierCurveTo(136, 46, 163, 65, 163, 65); ctx.stroke()
-    ctx.beginPath(); ctx.moveTo(156, 53); ctx.bezierCurveTo(198, 42, 240, 62, 240, 62); ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(124, 29)
+    ctx.bezierCurveTo(150, 24, 178, 36, 200, 46)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(162, 28)
+    ctx.bezierCurveTo(190, 22, 224, 35, 250, 45)
+    ctx.stroke()
 
-    // Legs
-    ctx.lineWidth = 13
-    ctx.beginPath(); ctx.moveTo(110, 91); ctx.quadraticCurveTo(102, 124, 114, 148); ctx.stroke()
-    ctx.beginPath(); ctx.moveTo(140, 87); ctx.quadraticCurveTo(154, 118, 160, 146); ctx.stroke()
+    // ── Legs — bent at knee (standing/attack stance on footpegs)
+    ctx.lineWidth = 14
+    ctx.beginPath()
+    ctx.moveTo(138, 66)
+    ctx.bezierCurveTo(132, 98, 116, 122, 106, 150)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(168, 66)
+    ctx.bezierCurveTo(167, 98, 163, 122, 165, 150)
+    ctx.stroke()
 
-    // Handlebars
+    // ── Exhaust — high-mount enduro routing, exits mid-rear
     ctx.lineWidth = 7
-    ctx.beginPath(); ctx.moveTo(152, 64); ctx.bezierCurveTo(192, 54, 226, 61, 250, 57); ctx.stroke()
-
-    // Exhaust
-    ctx.lineWidth = 6.5
-    ctx.beginPath(); ctx.moveTo(166, 133); ctx.bezierCurveTo(134, 143, 108, 154, 73, 154); ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(180, 136)
+    ctx.bezierCurveTo(156, 145, 128, 152, 92, 152)
+    ctx.stroke()
   }
 
   /* Pass 1 — broad white glow (heaviest blur) */
@@ -338,11 +382,14 @@ function buildMotoTexture(): THREE.CanvasTexture {
   drawBody(); drawLines()
   ctx.restore()
 
-  /* Pass 2 — red accent on front wheel */
+  /* Pass 2 — red accent on front wheel + subtle on exhaust exit */
   ctx.save()
   ctx.filter    = 'blur(20px)'
   ctx.fillStyle = 'rgba(255,59,48,0.3)'
-  ctx.beginPath(); ctx.arc(272, 158, 58, 0, Math.PI * 2); ctx.fill()
+  ctx.beginPath(); ctx.arc(272, 158, 60, 0, Math.PI * 2); ctx.fill()
+  // Subtle red hint at exhaust exit (rear lower)
+  ctx.fillStyle = 'rgba(255,80,20,0.12)'
+  ctx.beginPath(); ctx.arc(92, 152, 28, 0, Math.PI * 2); ctx.fill()
   ctx.restore()
 
   /* Pass 3 — tighter secondary glow */
@@ -361,18 +408,38 @@ function buildMotoTexture(): THREE.CanvasTexture {
   drawBody(); drawLines()
   ctx.restore()
 
-  /* Pass 5 — crisp edge detail (very low opacity) */
+  /* Pass 5 — crisp structural edge detail (very low opacity, no fill) */
   ctx.save()
   ctx.filter      = 'none'
-  ctx.strokeStyle = 'rgba(255,255,255,0.10)'
   ctx.fillStyle   = 'rgba(0,0,0,0)'
-  ctx.lineWidth   = 1.2
+  ctx.strokeStyle = 'rgba(255,255,255,0.10)'
   ctx.lineCap     = 'round'
+
+  // Wheel rim rings
+  ctx.lineWidth = 1.2
   ctx.beginPath(); ctx.arc(88,  158, 40, 0, Math.PI * 2); ctx.stroke()
-  ctx.beginPath(); ctx.arc(272, 158, 40, 0, Math.PI * 2); ctx.stroke()
-  ctx.lineWidth = 1.6
+  ctx.beginPath(); ctx.arc(272, 158, 41, 0, Math.PI * 2); ctx.stroke()
+
+  // Tank top edge (subtle surface line)
+  ctx.lineWidth = 1.8
   ctx.beginPath()
-  ctx.moveTo(132, 76); ctx.bezierCurveTo(172, 62, 208, 68, 218, 72); ctx.stroke()
+  ctx.moveTo(144, 68); ctx.bezierCurveTo(178, 58, 210, 54, 232, 56); ctx.stroke()
+
+  // Seat surface line
+  ctx.lineWidth = 1.2
+  ctx.beginPath()
+  ctx.moveTo(90, 66); ctx.lineTo(192, 68); ctx.stroke()
+
+  // Swingarm line (from rear axle to frame pivot)
+  ctx.lineWidth = 1.4
+  ctx.beginPath()
+  ctx.moveTo(88, 158); ctx.bezierCurveTo(100, 146, 124, 130, 152, 118); ctx.stroke()
+
+  // Fork guard band (horizontal detail on upper fork)
+  ctx.lineWidth = 1.3
+  ctx.beginPath()
+  ctx.moveTo(249, 106); ctx.lineTo(258, 105); ctx.stroke()
+
   ctx.restore()
 
   /* Pass 6 — wheel spokes */
