@@ -33,8 +33,12 @@ export function generateMaintenanceCards(
   const cards: MaintenanceCard[] = []
   let firstActiveFound = false
 
+  const firstMilestone =
+    Math.floor(lastServiceKm / MAINTENANCE_INTERVAL_KM) * MAINTENANCE_INTERVAL_KM +
+    MAINTENANCE_INTERVAL_KM
+
   for (let i = 1; i <= count; i++) {
-    const milestoneKm = lastServiceKm + i * MAINTENANCE_INTERVAL_KM
+    const milestoneKm = firstMilestone + (i - 1) * MAINTENANCE_INTERVAL_KM
     const serviceType = getServiceType(i)
     const tasks = getTasksForMileage(milestoneKm)
     const isCompleted = completedSet.has(milestoneKm)
