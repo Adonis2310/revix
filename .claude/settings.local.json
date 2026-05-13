@@ -9,7 +9,8 @@
       "Bash(python *)",
       "Bash(npm run *)",
       "Bash(vercel --prod)",
-      "Bash(npx vercel *)"
+      "Bash(npx vercel *)",
+      "Bash(node -e \"console.log\\(require\\('./node_modules/three/package.json'\\).version, require\\('./node_modules/gsap/package.json'\\).version\\)\")"
     ]
   }
 }
